@@ -1,7 +1,6 @@
 # JavaScript Cheat Sheet
 
 ## Primitive types
-___
 ```javascript
 const a = 1; // number
 const b = "Hello World"; // string
@@ -12,14 +11,12 @@ const f = undefined; // undefined
 ```
 
 ## Variable
-___
 ```javascript
 const a = "A";
 let b = "B";
 ```
 
 ## Function
-___
 ```javascript
 const sum = (a, b) => {
   return a + b;
@@ -28,7 +25,6 @@ const sum = (a, b) => a + b;
 ```
 
 ## Object
-___
 ```javascript
 const obj = {
   a: 1,
@@ -88,7 +84,6 @@ const obj = { a: 1, b: 2, ...(hasKey && { c: 3 }) };
 ```
 
 ## Array
-___
 ```javascript
 const numbers = [1, 2, 3];
 const strings = ["A", "B", "C"];
@@ -143,4 +138,46 @@ __Optional__
 ```javascript
 const hasElement = true;
 const array = [1, 2, ...(hasElement ? [3] : [])];
+```
+
+
+## Promise
+```javascript
+const promise = () =>
+  new Promise((resolve, reject) => {
+    const number = Math.random();
+    if (number > 0.5) {
+      resolve("Success");
+    } else {
+      reject("Fail");
+    }
+  });
+
+promise()
+  .then(() => {/* onSuccess */})
+  .catch(() => {/* onError */})
+  .finally(() => {/* otherwise */});
+```
+
+### All - Race
+```javascript
+const promiseA = Promise.resolve("A");
+const promiseB = Promise.resolve("B");
+
+Promise.all([promiseA(), promiseB()]).then(([A, B]) => {/* onSuccess */});
+const [A, B] = Promise.all([promiseA(), promiseB()]);
+
+Promise.race([promiseA(), promiseB()]).then(value => {/* onSuccess */});
+const value = Promise.race([promiseA(), promiseB()]);
+```
+
+### Async Await
+```javascript
+const getA = Promise.resolve("A");
+const getB = Promise.resolve("B");
+
+const asyncCall = async () => {
+  const A = await getA();
+  const B = await getB();
+};
 ```
