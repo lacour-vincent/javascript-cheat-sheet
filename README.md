@@ -181,3 +181,25 @@ const asyncCall = async () => {
   const B = await getB();
 };
 ```
+
+## Regular Expression
+
+### Test
+```javascript
+const regex = /^[A-Z]{1}[a-z]+$/;
+const regExp = new RegExp(regex);
+
+const firstname = "Vincent";
+const isFirstname = regex.test(firstname);
+const isFirstname = regExp.test(firstname);
+```
+
+### Match
+```javascript
+const regex = /[A-Z]/g;
+const regExp = new RegExp(regex);
+
+const firstname = "Vincent";
+const upperCases = firstname.match(regex);
+const upperCases = firstname.match(regExp);
+```
